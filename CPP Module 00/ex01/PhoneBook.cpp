@@ -5,54 +5,188 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/23 23:17:12 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/08/23 23:48:02 by nbenyahy         ###   ########.fr       */
+/*   Created: 2024/08/27 07:54:24 by nbenyahy          #+#    #+#             */
+/*   Updated: 2024/08/28 10:51:59 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
+void byebye(void)
+{
+    std::cout << "bye bye" << std::endl;
+    exit(0);
+}
+
 PhoneBook::PhoneBook(void)
 {
-    std::cout << "PhoneBook created" << std::endl;
+    this->contact_count = 0;
+    this->first_contact = 0;
+    std::cout << "obj PhoneBook created" << std::endl;
 }
 
 PhoneBook::~PhoneBook(void)
 {
-    std::cout << "PhoneBook destroctered" << std::endl;
+    std::cout << "obj deleted with seccess" << std::endl;    
+
 }
 
-void PhoneBook::set_contact(Contact new_contact)
+void PhoneBook::print_ten(std::string s)
 {
-    this->contact.push_back(new_contact);
-}
-
-void PhoneBook::get_contact(void)
-{
-    for (int i = 0; i < this->contact.size(); i++)
+    int s_size = s.length();
+    for (int i = 0; i < 10 ; i++)
     {
-        this->contact[i].get_first_name();
+        if (i < s_size - 1 && i == 9)
+            std::cout << '.';
+        else if (i < s_size)
+            std::cout << s[i];
+        else
+            std::cout << ' ';
     }
 }
 
-bool PhoneBook::add(void)
+void PhoneBook::show_infos(Contact contact)
 {
-    std::string first_name, last_name, nickname, phone_number, darkest_secret;
-    Contact     new_contact;
+    std::cout << "first name" << contact.get_first_name() << std::endl;
+    std::cout << "last name" << contact.get_last_name() << std::endl;;
+    std::cout << "nickname" << contact.get_nickname() << std::endl;;
+    std::cout << "phone number" << contact.get_phone_number() << std::endl;;
+    std::cout << "darkest secret" << contact.get_darkest_secret() << std::endl;;
+}
 
-    std::cout << "first_name" << std::endl;
-    std::cin >> first_name;
-    std::cout << "last_name" << std::endl;
-    std::cin >> last_name;
-    std::cout << "nickname" << std::endl;
-    std::cin >> nickname;
-    std::cout << "phone_number" << std::endl;
-    std::cin >> phone_number;
-    std::cout << "darkest_secret" << std::endl;
-    std::cin >> darkest_secret;
-    new_contact.set_first_name(first_name);
-    new_contact.set_last_name(last_name);
-    new_contact.set_nickname(nickname);
-    new_contact.set_phone_number(phone_number);
-    new_contact.set_darkest_secret(darkest_secret);
+bool is_number(std::string s)
+{
+    int i = 0;
+    if (s[i] == '+')
+        i++;
+    for (i = i; i < s.length() && isdigit(s[i]); i++);
+    return i != s.length() ? false : true;
+}
+
+void PhoneBook::search(void)
+{
+    int index;
+    std::string line;
+
+    std::cout << " -------------------------------------------" << std::endl;
+    std::cout << "|--index---|first name|last name-|nickname--|" << std::endl;
+    for (int i = 0; i < this->contact_count ; i++)
+    {
+        std::cout << " -------------------------------------------" << std::endl;
+        std::cout << "|" << i + 1 << "         |";
+        print_ten(contact[i].get_first_name());
+        std::cout << "|";
+        print_ten(contact[i].get_last_name());
+        std::cout << "|";
+        print_ten(contact[i].get_nickname());
+        std::cout << "|";
+        std::cout << std::endl;
+    }
+    std::cout << " -------------------------------------------" << std::endl;
+    while (1)
+    { 
+        while (line.empty() || !is_number(line))
+        {
+            if (line.empty())
+                std::cout << "enter the index or 0 for rollback :" << std::endl;
+            else
+                std::cout << "invalid index try again :" << std::endl;
+            std::getline(std::cin, line);
+        }
+        index = std::stoi(line);
+        std::cout << index << std::endl;
+        if (index == 0)
+            break;
+        if (index < 1 || index >= this->contact_count + 1)
+            std::cout << "invalid index. try again" << std::endl;
+        else
+        {
+            show_infos(this->contact[index - 1]);
+            break;
+        }
+    }
+}
+
+void save_line(Contact &contact)
+{
+    std::string str;
+    int i = 0;
+    
+    while (i < 5)
+    {
+        if (i == 0)
+            std::cout << "first name :" << std::endl;
+        else if (i == 1)
+            std::cout << "last name :" << std::endl;
+        else if (i == 2)
+            std::cout << "nickname :" << std::endl;
+        else if (i == 3)
+            std::cout << "phone number :" << std::endl;
+        else if (i == 4)
+            std::cout << "darkest secret :" << std::endl;
+        std::getline(std::cin, str);
+        if (std::cin.eof())
+            byebye();
+        if (str.empty())
+        {
+            std::cout << "invalid input retry enter ";
+            continue; 
+        }
+        if (i == 0)
+            contact.set_first_name(str);
+        else if (i == 1)
+            contact.set_last_name(str);
+        else if (i == 2)
+            contact.set_nickname(str);
+        else if (i == 3)
+            contact.set_phone_number(str);
+        else if (i == 4)
+            contact.set_darkest_secret(str);
+        i++;
+    }
+}
+
+void PhoneBook::add()
+{
+    int index;
+
+    if (contact_count == 8)
+    {
+        if (first_contact == 8)
+            first_contact = 0;
+        else
+            index = first_contact;
+        first_contact++;
+        
+    }
+    else
+    {
+        index = contact_count;
+        contact_count++;
+    }
+    save_line(this->contact[index]);
+}
+
+void PhoneBook::menu(void)
+{
+    std::string order;
+
+    while (1)
+    {
+        std::cout << "ur order master (ADD, SEARCH and EXIT.): ";
+        std::getline(std::cin, order);
+        if (std::cin.eof() || !order.compare("EXIT"))
+            byebye();
+        if (!order.compare("ADD"))
+            add();
+        else if (!order.compare("SEARCH"))
+        {
+            if (this->contact_count != 0)
+                this->search();
+            else
+                std::cout << "no data!!! please set some data" << std::endl;
+        }
+        else
+            std::cout << "huh !!!? are retarded MF, there is only (ADD, SEARCH and EXIT) blind ng" << std::endl;
+    }
 }

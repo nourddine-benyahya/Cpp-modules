@@ -6,7 +6,7 @@
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:08:10 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/08/23 23:47:31 by nbenyahy         ###   ########.fr       */
+/*   Updated: 2024/08/27 15:33:46 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,16 @@
 class PhoneBook
 {
     private : 
-        std::vector<Contact> contact;
+        Contact contact[8];
+        int contact_count;
+        int first_contact;
+        void add(void);
+        void search(void);
+        void print_ten(std::string s);
+        void show_infos(Contact contact);
     public :
-        // constrocter
         PhoneBook(void);
-        void get_contact(void);
-        void set_contact(Contact new_contact);
-        bool add(void);
-        // void commnad_checker(void);
-        // destrocter
+        void menu(void);
         ~PhoneBook(void);  
 };
 
