@@ -6,16 +6,14 @@
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 21:01:02 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/08/19 15:50:37 by nbenyahy         ###   ########.fr       */
+/*   Updated: 2024/08/28 12:35:09 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
-Contact::Contact(void)
-{
-	std::cout << "object Contact created" << std::endl;
-}
+Contact::Contact(void){}
+Contact::~Contact(void){}
 
 std::string Contact::get_first_name(void)
 {
@@ -66,9 +64,4 @@ void Contact::set_phone_number(std::string new_phone_number)
 void Contact::set_darkest_secret(std::string new_darkest_secret)
 {
 	darkest_secret = new_darkest_secret;
-}
-
-Contact::~Contact(void)
-{
-	std::cout << "object Contact finish it work" << std::endl;
 }

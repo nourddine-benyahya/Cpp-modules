@@ -6,29 +6,24 @@
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 07:54:24 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/08/28 10:51:59 by nbenyahy         ###   ########.fr       */
+/*   Updated: 2024/08/28 12:36:54 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-void byebye(void)
-{
-    std::cout << "bye bye" << std::endl;
-    exit(0);
-}
-
 PhoneBook::PhoneBook(void)
 {
     this->contact_count = 0;
     this->first_contact = 0;
-    std::cout << "obj PhoneBook created" << std::endl;
 }
 
-PhoneBook::~PhoneBook(void)
-{
-    std::cout << "obj deleted with seccess" << std::endl;    
+PhoneBook::~PhoneBook(void){}
 
+void byebye(void)
+{
+    std::cout << "bye bye" << std::endl;
+    exit(0);
 }
 
 void PhoneBook::print_ten(std::string s)
@@ -44,6 +39,14 @@ void PhoneBook::print_ten(std::string s)
             std::cout << ' ';
     }
 }
+bool PhoneBook::is_number(std::string s)
+{
+    int i = 0;
+    if (s[i] == '+')
+        i++;
+    for (i = i; i < s.length() && isdigit(s[i]); i++);
+    return i != s.length() ? false : true;
+}
 
 void PhoneBook::show_infos(Contact contact)
 {
@@ -52,15 +55,6 @@ void PhoneBook::show_infos(Contact contact)
     std::cout << "nickname" << contact.get_nickname() << std::endl;;
     std::cout << "phone number" << contact.get_phone_number() << std::endl;;
     std::cout << "darkest secret" << contact.get_darkest_secret() << std::endl;;
-}
-
-bool is_number(std::string s)
-{
-    int i = 0;
-    if (s[i] == '+')
-        i++;
-    for (i = i; i < s.length() && isdigit(s[i]); i++);
-    return i != s.length() ? false : true;
 }
 
 void PhoneBook::search(void)
@@ -87,6 +81,8 @@ void PhoneBook::search(void)
     { 
         while (line.empty() || !is_number(line))
         {
+            if (std::cin.eof())
+                byebye();
             if (line.empty())
                 std::cout << "enter the index or 0 for rollback :" << std::endl;
             else
@@ -94,6 +90,7 @@ void PhoneBook::search(void)
             std::getline(std::cin, line);
         }
         index = std::stoi(line);
+        line.clear();
         std::cout << index << std::endl;
         if (index == 0)
             break;
@@ -107,7 +104,7 @@ void PhoneBook::search(void)
     }
 }
 
-void save_line(Contact &contact)
+void PhoneBook::save_line(Contact &contact)
 {
     std::string str;
     int i = 0;
@@ -164,7 +161,7 @@ void PhoneBook::add()
         index = contact_count;
         contact_count++;
     }
-    save_line(this->contact[index]);
+    this->save_line(this->contact[index]);
 }
 
 void PhoneBook::menu(void)
