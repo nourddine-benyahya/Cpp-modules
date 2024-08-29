@@ -6,13 +6,12 @@
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:07:28 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/08/28 12:35:27 by nbenyahy         ###   ########.fr       */
+/*   Updated: 2024/08/29 23:51:16 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTACT_HPP
 #define CONTACT_HPP
-
 
 # include <stdbool.h>
 # include <iostream>
