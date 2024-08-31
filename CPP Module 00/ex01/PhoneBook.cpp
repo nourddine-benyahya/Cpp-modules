@@ -6,7 +6,7 @@
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 07:54:24 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/08/29 23:35:21 by nbenyahy         ###   ########.fr       */
+/*   Updated: 2024/08/31 16:50:38 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,26 @@ void byebye(void)
     exit(0);
 }
 
+bool trim_it(std::string s)
+{
+    int start = 0;
+    int len = s.length();
+
+    while (s[start] && s[start] == ' ')
+        start++;
+    len--;
+    while (len > 0 && s[len] == ' ')
+        len--;
+    std::string a = s.substr(start, len - start + 1);
+    if (a.empty())
+        return (false);
+    return (true);
+}
+
 void PhoneBook::print_ten(std::string s)
 {
     int s_size = s.length();
     int res = 10 - s_size;
-    // std::cout  << res;
     while (res > 0)
     {
         std::cout  << ' ';
@@ -113,6 +128,9 @@ void PhoneBook::search(void)
 void PhoneBook::save_line(Contact &contact)
 {
     std::string str;
+    std::string trimed_str;
+    int start = 0;
+    int len = 0;
     int i = 0;
     
     while (i < 5)
@@ -130,21 +148,28 @@ void PhoneBook::save_line(Contact &contact)
         std::getline(std::cin, str);
         if (std::cin.eof())
             byebye();
-        if (str.empty())
+        if (str.empty() || !trim_it(str))
         {
             std::cout << "invalid input retry enter ";
             continue; 
         }
+        start = 0;
+        len = str.length();
+        while (str[start] && str[start] == ' ')
+            start++;
+        while (len > 0 && str[len] == ' ')
+            len--;
+        trimed_str = str.substr(start, start - len + 1);
         if (i == 0)
-            contact.set_first_name(str);
+            contact.set_first_name(trimed_str);
         else if (i == 1)
-            contact.set_last_name(str);
+            contact.set_last_name(trimed_str);
         else if (i == 2)
-            contact.set_nickname(str);
+            contact.set_nickname(trimed_str);
         else if (i == 3)
             {
-                if (is_number(str))
-                    contact.set_phone_number(str);
+                if (is_number(trimed_str))
+                    contact.set_phone_number(trimed_str);
                 else
                 {
                     std::cout << "invalid Phone number retry enter ";
@@ -152,7 +177,7 @@ void PhoneBook::save_line(Contact &contact)
                 }
             }
         else if (i == 4)
-            contact.set_darkest_secret(str);
+            contact.set_darkest_secret(trimed_str);
         i++;
     }
 }
