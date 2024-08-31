@@ -6,7 +6,7 @@
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:08:10 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/08/29 23:51:28 by nbenyahy         ###   ########.fr       */
+/*   Updated: 2024/08/31 19:39:23 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ class PhoneBook
         Contact contact[8];
         int contact_count;
         int first_contact;
+        void byebye(void);
+        bool trim_it(std::string s);
         bool is_number(std::string s);
         void print_ten(std::string s);
         void save_line(Contact &contact);

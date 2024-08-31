@@ -6,7 +6,7 @@
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 07:54:24 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/08/31 16:50:38 by nbenyahy         ###   ########.fr       */
+/*   Updated: 2024/08/31 19:39:56 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ PhoneBook::PhoneBook(void)
 
 PhoneBook::~PhoneBook(void){}
 
-void byebye(void)
+void PhoneBook::byebye(void)
 {
     std::cout << "bye bye" << std::endl;
     exit(0);
 }
 
-bool trim_it(std::string s)
+bool PhoneBook::trim_it(std::string s)
 {
     int start = 0;
     int len = s.length();
@@ -36,7 +36,7 @@ bool trim_it(std::string s)
     len--;
     while (len > 0 && s[len] == ' ')
         len--;
-    std::string a = s.substr(start, len - start + 1);
+    std::string a = s.substr(start, len - start);
     if (a.empty())
         return (false);
     return (true);
@@ -107,7 +107,7 @@ void PhoneBook::search(void)
         while (line.empty() || !is_number(line) || line.size() != 1)
         {
             if (std::cin.eof())
-                byebye();
+                this->byebye();
             std::cout << "invalid index try again :" << std::endl;
             std::getline(std::cin, line);
         }
@@ -147,8 +147,8 @@ void PhoneBook::save_line(Contact &contact)
             std::cout << "darkest secret :" << std::endl;
         std::getline(std::cin, str);
         if (std::cin.eof())
-            byebye();
-        if (str.empty() || !trim_it(str))
+            this->byebye();;
+        if (str.empty() || !this->trim_it(str))
         {
             std::cout << "invalid input retry enter ";
             continue; 
@@ -159,7 +159,7 @@ void PhoneBook::save_line(Contact &contact)
             start++;
         while (len > 0 && str[len] == ' ')
             len--;
-        trimed_str = str.substr(start, start - len + 1);
+        trimed_str = str.substr(start, start - len);
         if (i == 0)
             contact.set_first_name(trimed_str);
         else if (i == 1)
@@ -168,7 +168,7 @@ void PhoneBook::save_line(Contact &contact)
             contact.set_nickname(trimed_str);
         else if (i == 3)
             {
-                if (is_number(trimed_str))
+                if (is_number(trimed_str)  && trimed_str.length() < 12)
                     contact.set_phone_number(trimed_str);
                 else
                 {
@@ -211,11 +211,11 @@ void PhoneBook::menu(void)
     {
         std::cout << "ur order master (ADD, SEARCH and EXIT.): ";
         std::getline(std::cin, order);
-        if (std::cin.eof() || !order.compare("EXIT"))
-            byebye();
-        if (!order.compare("ADD"))
+        if (std::cin.eof() || !order.compare("EXIT") || !order.compare("exit"))
+            this->byebye();;
+        if (!order.compare("ADD") || !order.compare("add"))
             add();
-        else if (!order.compare("SEARCH"))
+        else if (!order.compare("SEARCH") || !order.compare("search"))
         {
             if (this->contact_count != 0)
                 this->search();
