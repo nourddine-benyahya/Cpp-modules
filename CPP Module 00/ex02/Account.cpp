@@ -6,13 +6,14 @@
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 15:58:00 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/08/29 19:52:39 by nbenyahy         ###   ########.fr       */
+/*   Updated: 2024/09/01 12:05:24 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 #include "iostream"
 #include "iomanip"
+#include <ctime>
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;

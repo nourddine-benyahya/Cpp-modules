@@ -6,7 +6,7 @@
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 07:54:24 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/09/01 11:56:30 by nbenyahy         ###   ########.fr       */
+/*   Updated: 2024/09/01 11:59:43 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void PhoneBook::show_infos(Contact contact)
 
 void PhoneBook::search(void)
 {
-    int index;
+    int index = 0;
     std::string line;
 
     std::cout << " -------------------------------------------" << std::endl;
