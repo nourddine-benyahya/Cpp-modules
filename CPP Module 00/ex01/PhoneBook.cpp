@@ -6,7 +6,7 @@
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 07:54:24 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/08/31 19:39:56 by nbenyahy         ###   ########.fr       */
+/*   Updated: 2024/09/01 11:56:30 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,6 @@ bool PhoneBook::is_number(std::string s)
 {
     size_t i = 0;
     size_t j = 0;
-    if (s[j] == '+')
-        j++;
-    if (!s[j])
-        return (false);
     for (i = j; i < s.length() && isdigit(s[i]); i++);
     return i != s.length() ? false : true;
 }
@@ -104,19 +100,19 @@ void PhoneBook::search(void)
     { 
         std::cout << "enter the index (between 1 and 8) or 0 for rollback :" << std::endl;
         std::getline(std::cin, line);
-        while (line.empty() || !is_number(line) || line.size() != 1)
+        while (line.empty() || line.size() != 1 || !is_number(line))
         {
             if (std::cin.eof())
                 this->byebye();
             std::cout << "invalid index try again :" << std::endl;
             std::getline(std::cin, line);
         }
-        index = std::stoi(line);
+        std::cout << index << std::endl;
         line.clear();
         if (index == 0)
             break;
         if (index < 1 || index >= this->contact_count + 1)
-            std::cout << "invalid index. try again" << std::endl;
+            std::cout << "invalid index. try again " << std::endl;
         else
         {
             show_infos(this->contact[index - 1]);
