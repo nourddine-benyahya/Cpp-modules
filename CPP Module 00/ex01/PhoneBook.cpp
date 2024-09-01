@@ -6,7 +6,7 @@
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 07:54:24 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/09/01 11:59:43 by nbenyahy         ###   ########.fr       */
+/*   Updated: 2024/09/01 15:19:48 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,14 @@ void PhoneBook::byebye(void)
     exit(0);
 }
 
-bool PhoneBook::trim_it(std::string s)
+bool PhoneBook::_is_empty(std::string s)
 {
     int start = 0;
     int len = s.length();
 
     while (s[start] && s[start] == ' ')
         start++;
-    len--;
-    while (len > 0 && s[len] == ' ')
+    while (len > 0 && s[len - 1] == ' ')
         len--;
     std::string a = s.substr(start, len - start);
     if (a.empty())
@@ -107,7 +106,7 @@ void PhoneBook::search(void)
             std::cout << "invalid index try again :" << std::endl;
             std::getline(std::cin, line);
         }
-        std::cout << index << std::endl;
+        index =  line[0] - '0';
         line.clear();
         if (index == 0)
             break;
@@ -144,7 +143,7 @@ void PhoneBook::save_line(Contact &contact)
         std::getline(std::cin, str);
         if (std::cin.eof())
             this->byebye();;
-        if (str.empty() || !this->trim_it(str))
+        if (str.empty() || !this->_is_empty(str))
         {
             std::cout << "invalid input retry enter ";
             continue; 
@@ -153,9 +152,9 @@ void PhoneBook::save_line(Contact &contact)
         len = str.length();
         while (str[start] && str[start] == ' ')
             start++;
-        while (len > 0 && str[len] == ' ')
+        while (len > 0 && str[len - 1] == ' ')
             len--;
-        trimed_str = str.substr(start, start - len);
+        trimed_str = str.substr(start, len - start);
         if (i == 0)
             contact.set_first_name(trimed_str);
         else if (i == 1)
