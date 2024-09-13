@@ -6,7 +6,7 @@
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:07:28 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/09/01 12:05:09 by nbenyahy         ###   ########.fr       */
+/*   Updated: 2024/09/12 10:04:14 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <iostream>
 # include <cctype>
 # include <cstdlib>
+# include <iomanip>
 # include "Contact.hpp"
 
 class Contact

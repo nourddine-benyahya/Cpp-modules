@@ -6,7 +6,7 @@
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 07:54:24 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/09/01 15:19:48 by nbenyahy         ###   ########.fr       */
+/*   Updated: 2024/09/12 10:05:15 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,13 @@ bool PhoneBook::_is_empty(std::string s)
 
 void PhoneBook::print_ten(std::string s)
 {
-    int s_size = s.length();
-    int res = 10 - s_size;
-    while (res > 0)
+    if (s.length() <= 10)
+        std::cout << std::setw(10) << s;
+    else
     {
-        std::cout  << ' ';
-        res--;
-    }
-    for (int i = 0; i < 10 ; i++)
-    {
-        if (i < s_size - 1 && i == 9)
-            std::cout << '.';
-        else
-            std::cout << s[i];
-    }
+        std::string a = s.substr(0, 9);
+        std::cout << a << ".";
+    } 
 }
 bool PhoneBook::is_number(std::string s)
 {

@@ -6,7 +6,7 @@
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 15:58:00 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/09/01 12:05:24 by nbenyahy         ###   ########.fr       */
+/*   Updated: 2024/09/08 16:33:31 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	Account::displayAccountsInfos( void )
 }
 void	Account::makeDeposit( int deposit )
 {
+	this->_nbDeposits++;
+	this->_totalNbDeposits++;
 	_displayTimestamp();
 	std::cout   << "index:" 
 				<< this->_accountIndex
@@ -93,12 +95,10 @@ void	Account::makeDeposit( int deposit )
 				<< ";amount:"
 				<< this->checkAmount() + deposit 
 				<< ";nb_deposits:" 
-				<< this->getNbAccounts()
+				<< this->_nbDeposits
 				<< std::endl;
 	this->_amount += deposit;
 	this->_totalAmount += deposit;
-	this->_nbDeposits++;
-	this->_totalNbDeposits++;
 }
 
 bool	Account::makeWithdrawal( int withdrawal )
@@ -125,7 +125,7 @@ bool	Account::makeWithdrawal( int withdrawal )
 				<< ";amount:"
 				<< this->checkAmount() - withdrawal 
 				<< ";nb_withdrawals:"
-				<< getNbWithdrawals()
+				<< this->_nbWithdrawals
 				<< std::endl;
 	this->_totalAmount -= withdrawal;
 	this->_amount -= withdrawal;

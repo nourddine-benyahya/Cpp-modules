@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 17:17:47 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/09/12 09:27:24 by nbenyahy         ###   ########.fr       */
+/*   Created: 2024/09/01 15:30:16 by nbenyahy          #+#    #+#             */
+/*   Updated: 2024/09/12 10:42:09 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "Zombie.hpp"
 
-int main(int ac, char **av)
+Zombie::Zombie()
 {
-	std::string str;
+    this->name = "";
+}
 
-	if (ac == 1)
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-	for (int i = 1; i < ac; i++)
-	{
-		str = av[i];
-		for (int j = 0; str[j] != '\0'; j++)
-		{
-			str[j] = std::toupper(str[j]);
-		}
-		std::cout << str;
-	}
-	std::cout << std::endl;
-	return 0;
+Zombie::~Zombie(void)
+{
+    std::cout << this->name << " finish his work" << std::endl;
+}
+
+void Zombie::setName(std::string name)
+{
+    this->name = name;
+}
+
+void Zombie::announce()
+{
+    std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
