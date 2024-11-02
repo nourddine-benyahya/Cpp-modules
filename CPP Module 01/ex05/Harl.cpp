@@ -6,19 +6,18 @@
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 13:56:06 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/09/13 12:41:05 by nbenyahy         ###   ########.fr       */
+/*   Updated: 2024/10/22 13:15:25 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 
-Harl::Harl(void){};
-Harl::~Harl(void){};
+// int Harl::hehe.a = 0;
 
-void Harl::undefind( void )
-{
-    std::cout << "undefind level" << std::endl;
-}
+Harl::Harl(void){
+    // hehe.a = 0;
+};
+Harl::~Harl(void){};
 
 void Harl::debug( void )
 {
@@ -40,9 +39,14 @@ void Harl::error( void )
 void  Harl::complain( std::string level )
 {
     int i = 0;
-    void (Harl::*fun[5])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error, &Harl::undefind};
+    void (Harl::*fun[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
     std::string cases[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
     while (level != cases[i] && i < 4)
         i++;
+    if (i == 4)
+    {   
+        std::cout << "undefind level" << std::endl;
+        return ;
+    }
     (this->*fun[i])();
 }

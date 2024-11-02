@@ -6,16 +6,11 @@
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:16:09 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/09/13 14:42:37 by nbenyahy         ###   ########.fr       */
+/*   Updated: 2024/10/22 13:17:45 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
-
-void Harl::undefind( void )
-{
-    std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
-}
 
 void Harl::debug( void )
 {
@@ -50,6 +45,6 @@ void  Harl::complain( std::string level )
         case 1: this->info();
         case 2: this->warning();
         case 3: this->error(); break;
-        default: this->undefind() ; break;
+        default:  std::cout << "[ Probably complaining about insignificant problems ]" << std::endl; ; break;
     }
 }

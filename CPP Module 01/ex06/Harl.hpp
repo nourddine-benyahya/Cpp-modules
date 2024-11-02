@@ -6,7 +6,7 @@
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:16:07 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/09/13 14:28:37 by nbenyahy         ###   ########.fr       */
+/*   Updated: 2024/10/22 13:17:51 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ class Harl
         void info( void );
         void warning( void );
         void error( void );
-        void undefind( void );
 };
 
 #endif
