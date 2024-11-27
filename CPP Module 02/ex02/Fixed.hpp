@@ -6,7 +6,7 @@
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 15:24:53 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/11/27 12:23:15 by nbenyahy         ###   ########.fr       */
+/*   Updated: 2024/11/27 12:58:14 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,26 @@ class Fixed
         void setRawBits( int const raw );
         float toFloat( void ) const;
         int toInt( void ) const;
+        bool operator>(const Fixed &obj) const;
+        bool operator<(const Fixed &obj) const;
+        bool operator>=(const Fixed &obj) const;
+        bool operator<=(const Fixed &obj) const;
+        bool operator==(const Fixed &obj) const;
+        bool operator!=(const Fixed &obj) const;
+        Fixed operator+(const Fixed &obj) const;
+        Fixed operator-(const Fixed &obj) const;
+        Fixed operator*(const Fixed &obj) const;
+        Fixed operator/(const Fixed &obj) const;
+        Fixed& operator++();
+        Fixed operator++(int);
+        Fixed& operator--();
+        Fixed operator--(int);
+        static Fixed &min(Fixed &obj1, Fixed &obj2);
+        static Fixed &max(Fixed &obj1, Fixed &obj2);
+        static const Fixed &min(const Fixed &obj1, const Fixed &obj2);
+        static const Fixed &max(const Fixed &obj1, const Fixed &obj2);
 };
-
-std::ostream &operator<<(std::ostream &out, const Fixed &obj);
+std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
 
 
 #endif
