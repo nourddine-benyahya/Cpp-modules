@@ -5,29 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/01 21:20:24 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/11/04 21:48:00 by nbenyahy         ###   ########.fr       */
+/*   Created: 2024/11/29 11:34:28 by nbenyahy          #+#    #+#             */
+/*   Updated: 2024/11/29 15:47:23 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
-#include "HumanB.hpp"
-#include "Weapon.hpp"
-int main()
-{
-    {
-        Weapon club = Weapon("crude spiked club");
-        HumanA bob("Bob", club);
-        bob.attack();
-        club.setType("some other type of club");
-        bob.attack();
-    }
-    {
-        Weapon club = Weapon("crude spiked club");
-        HumanB jim("Jim");
-        jim.setWeapon(club);
-        jim.attack();
-        club.setType("some other type of club");
-        jim.attack();
-    }
+#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+
+int main() {
+
+    ScavTrap scav1;
+    scav1.attack("target1");
+    scav1.guardGate();
+
+    ScavTrap scav2("Scavvy");
+    scav2.attack("target2");
+    scav2.guardGate();
+
+    ScavTrap scav3(scav2);
+    scav3.attack("target3");
+
+    scav1 = scav3;
+    scav1.attack("target4");
+
+    return 0;
 }
