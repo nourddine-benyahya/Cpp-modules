@@ -1,4 +1,4 @@
-SRC = ClapTrap.cpp ScavTrap.cpp main.cpp
+SRC = ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -6,14 +6,14 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 CPP = c++
 
-NAME = ScavTrap
+NAME = DiamondTrap
 
 all : $(NAME)
 
 $(NAME) : $(OBJ)
 	$(CPP) $(CPPFLAGS) 	$(OBJ) -o $(NAME)
 
-%.o : %.cpp ClapTrap.hpp ScavTrap.hpp
+%.o : %.cpp FragTrap.hpp ClapTrap.hpp ScavTrap.hpp 
 	$(CPP) $(CPPFLAGS) -c $< -o $@
 
 clean :

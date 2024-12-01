@@ -6,7 +6,7 @@
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 12:48:57 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/12/01 12:30:25 by nbenyahy         ###   ########.fr       */
+/*   Updated: 2024/12/01 12:29:01 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap {
+class ScavTrap : virtual public ClapTrap {
 public:
     // orthodox
     ScavTrap();

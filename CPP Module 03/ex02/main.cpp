@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbenyahy <nbenyahy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/29 12:48:57 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/12/01 12:30:25 by nbenyahy         ###   ########.fr       */
+/*   Created: 2024/11/29 11:34:28 by nbenyahy          #+#    #+#             */
+/*   Updated: 2024/11/30 10:10:05 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#ifndef SCAVTRAP_HPP
-#define SCAVTRAP_HPP
-
 #include "ClapTrap.hpp"
+#include "FragTrap.hpp"
 
-class ScavTrap : public ClapTrap {
-public:
-    // orthodox
-    ScavTrap();
-    ScavTrap(const std::string& name);
-    ScavTrap(const ScavTrap &obj);
-    ScavTrap& operator=(const ScavTrap &obj);
-    ~ScavTrap();
+int main() {
 
-    void attack(const std::string& target);
-    void guardGate();
-};
+    FragTrap frag1;
+    frag1.highFivesGuys();
 
-#endif
+    FragTrap frag2("fragvy");
+
+    frag2.highFivesGuys();
+
+    FragTrap frag3(frag2);
+    frag3.highFivesGuys();
+
+    frag1 = frag3;
+    frag1.highFivesGuys();
+
+    return 0;
+}

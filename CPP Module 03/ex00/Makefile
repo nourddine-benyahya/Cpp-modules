@@ -24,4 +24,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : all clean flcean re $(NAME)
+.PHONY : all clean flcean re
