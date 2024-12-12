@@ -2,11 +2,11 @@ SRC = sources/AMateria.cpp sources/Cure.cpp sources/Ice.cpp sources/Character.cp
 
 OBJ = $(SRC:.cpp=.o)
 
-CPPFLAGS = -Wall -Wextra -Werror -I./includes -std=c++98 -DDEBUG
+CPPFLAGS = -Wall -Wextra -Werror -I./includes -std=c++98  #-DDEBUG
 
 CPP = c++
 
-NAME = Animal
+NAME = Game
 
 all : $(NAME)
 

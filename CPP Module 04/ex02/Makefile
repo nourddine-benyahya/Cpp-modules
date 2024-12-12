@@ -1,4 +1,4 @@
-SRC = sources/Animal.cpp sources/Dog.cpp sources/Cat.cpp sources/Brain.cpp  main.cpp
+SRC = sources/Animal.cpp sources/Dog.cpp sources/Cat.cpp sources/Brain.cpp sources/WrongCat.cpp sources/WrongAnimal.cpp  main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

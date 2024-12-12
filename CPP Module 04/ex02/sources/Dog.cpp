@@ -1,43 +1,38 @@
 #include "Dog.hpp"
 
-Dog::Dog() : Animal()
+Dog::Dog() : Animal(), brain(new Brain())
 {
-    this->brain = new Brain();
-    std::cout << "Dog constracter called" << std::endl;
+    std::cout << "Dog constructor called" << std::endl;
 }
 
-Dog::Dog(const std::string type) : Animal(type)
+Dog::Dog(const std::string type) : Animal(type), brain(new Brain())
 {
-    this->brain = new Brain();
-    std::cout << "Dog parameterized constracter called" << std::endl;
+    std::cout << "Dog parameterized constructor called" << std::endl;
 }
 
+Dog::Dog(const Dog &obj) : Animal(obj), brain(new Brain(*obj.brain))
+{
+    std::cout << "Dog copy constructor called" << std::endl;
+}
 
 Dog &Dog::operator=(const Dog &obj)
 {
     if (this != &obj)
     {
-        this->brain = new Brain(*obj.brain);
+        delete this->brain; 
+        this->brain = new Brain(*obj.brain); 
         this->type = obj.type;
     }
-    std::cout << "Dog copy assigment operator called" << std::endl;
-    return (*this);
+    std::cout << "Dog copy assignment operator called" << std::endl;
+    return *this;
 }
-
-Dog::Dog(const Dog &obj)
-{
-    type = obj.type;
-    delete obj.brain;
-    this->brain = new Brain(*obj.brain);
-    std::cout << "Dog copy constracter called" << std::endl;
-}
-
 
 Dog::~Dog()
 {
     delete this->brain;
-    std::cout << "Dog Deconstracter Called" << std::endl;
+    std::cout << "Dog destructor called" << std::endl;
 }
+
 void Dog::makeSound(void) const
 {
     std::cout << "BARKING" << std::endl;
