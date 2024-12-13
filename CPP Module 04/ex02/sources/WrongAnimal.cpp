@@ -1,6 +1,6 @@
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal() : type("MOUNTASSIR")
+WrongAnimal::WrongAnimal() : type("non")
 {
     std::cout << "WrongAnimal constracter called" << std::endl;
 }

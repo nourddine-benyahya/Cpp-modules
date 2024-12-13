@@ -1,6 +1,6 @@
 #include "Animal.hpp"
 
-Animal::Animal() : type("MOUNTASSIR")
+Animal::Animal() : type("non")
 {
     std::cout << "Animal constracter called" << std::endl;
 }

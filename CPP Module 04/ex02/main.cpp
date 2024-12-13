@@ -5,8 +5,8 @@
 
 int main()
 {
-    Animal *an = new Dog("JACK");
-    Animal *an2 = new Cat("L7AJJ");
+    Animal *an = new Dog();
+    Animal *an2 = new Cat();
     Brain *br = new Brain();
 
     std::cout << an->getType() << std::endl;

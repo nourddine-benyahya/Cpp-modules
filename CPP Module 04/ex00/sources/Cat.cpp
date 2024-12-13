@@ -1,6 +1,6 @@
 #include "Cat.hpp"
 
-Cat::Cat() : Animal()
+Cat::Cat() : Animal("Cat")
 {
     std::cout << "Cat constracter called" << std::endl;
 }

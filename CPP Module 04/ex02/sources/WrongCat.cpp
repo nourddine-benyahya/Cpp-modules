@@ -1,6 +1,6 @@
 #include "WrongCat.hpp"
 
-WrongCat::WrongCat() : WrongAnimal()
+WrongCat::WrongCat() : WrongAnimal("WrongCat")
 {
     std::cout << "WrongCat constracter called" << std::endl;
 }

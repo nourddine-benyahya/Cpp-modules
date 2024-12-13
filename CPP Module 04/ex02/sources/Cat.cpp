@@ -1,6 +1,6 @@
 #include "Cat.hpp"
 
-Cat::Cat() : Animal(), brain(new Brain())
+Cat::Cat() : Animal("Cat"), brain(new Brain())
 {
     std::cout << "Cat constructor called" << std::endl;
 }
