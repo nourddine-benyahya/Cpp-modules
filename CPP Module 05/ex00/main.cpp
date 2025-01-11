@@ -2,12 +2,14 @@
 
 int main ()
 {
-    Bureaucrat obj("nourddine",1);
+    Bureaucrat obj("nourddine",2);
 
     try
     {
+        std::cout << obj;
         obj.incrementGrade();
-        obj.incrementGrade();
+        std::cout << obj;
+        // obj.incrementGrade();
     }
     catch(const std::exception& e)
     {

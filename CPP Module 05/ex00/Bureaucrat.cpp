@@ -5,7 +5,7 @@ void actionMessage(const std::string& msg)
     #ifdef DEBUG
         std::cout << "Bureaucrat " << msg << " is called" << std::endl;
     #else
-        (void)msg; // Avoid unused parameter warning
+        (void)msg;
     #endif
 }
 
@@ -59,4 +59,22 @@ void Bureaucrat::decrementGrade()
     if (grade >= 150)
         throw GradeTooLowException();
     ++grade;
+}
+const char *Bureaucrat::GradeTooHighException::what(void) const throw()
+{
+    actionMessage("TooHigh Exception");
+    return "TOO HIGH";
+}
+
+const char *Bureaucrat::GradeTooLowException::what(void) const throw()
+{
+    actionMessage("TooLow Exception");
+    return "TOO LOW";
+}
+
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& obj)
+{
+    actionMessage("overload operator");
+    out << obj.getName() << ", bureaucrat grade " << obj.getGrade() << std::endl;
+    return out;
 }
