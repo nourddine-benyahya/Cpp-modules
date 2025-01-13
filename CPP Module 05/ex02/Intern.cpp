@@ -35,7 +35,7 @@ Intern::~Intern()
 AForm *Intern::makeShrubberyCreationForm(const std::string& target)
 {
     actionMessage("makeShrubberyCreationForm Method");
-    return new ShrubberyCreationForm(target);
+    return new ShurbberyCreationForm(target);
 }
 
 AForm *Intern::makeRobotomyRequestForm(const std::string& target)
@@ -50,22 +50,19 @@ AForm *Intern::makePresidentialPardonForm(const std::string& target)
     return new PresidentialPardonForm(target);
 }
 
-
 AForm* Intern::makeForm(const std::string& formName, const std::string& target)
 {
-    actionMessage("makeForm Method");
-
-    std::string action[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
-    AForm *(Intern::*fun[3])(std::string& target) = {&Intern::makeShrubberyCreationForm, &Intern::makeRobotomyRequestForm, &Intern::makePresidentialPardonForm};
+    std::string formNames[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
+    AForm* (Intern::*fun[3])(const std::string&) = {&Intern::makeShrubberyCreationForm, &Intern::makeRobotomyRequestForm, &Intern::makePresidentialPardonForm};
 
     for (int i = 0; i < 3; i++)
     {
-        if (formName == action[i])
+        if (formNames[i] == formName)
         {
             std::cout << "Intern creates " << formName << std::endl;
             return (this->*fun[i])(target);
         }
     }
-    std::cout << "Intern can't create " << formName << std::endl;
+    std::cout << "Form not found" << std::endl;
     return NULL;
 }

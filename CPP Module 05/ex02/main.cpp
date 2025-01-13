@@ -1,4 +1,4 @@
-#include "Intern.cpp"
+#include "Intern.hpp"
 
 int main ()
 {
