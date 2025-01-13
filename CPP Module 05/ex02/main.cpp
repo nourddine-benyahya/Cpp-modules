@@ -1,20 +1,33 @@
-#include "Bureaucrat.hpp"
-#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main ()
 {
-    Bureaucrat obj("nourddine",2);
-    // AForm obj2("ahmed", 0, 0);
+    ShurbberyCreationForm form;
+    RobotomyRequestForm form2;
+    PresidentialPardonForm form3;
 
-    try
-    {
-        std::cout << obj;
-        obj.incrementGrade();
-        std::cout << obj;
-        // obj.incrementGrade();
+
+
+    Bureaucrat bureaucrat("bureaucrat", 1);
+    Bureaucrat bureaucrat2("bureaucrat2", 150);
+    Bureaucrat bureaucrat3("bureaucrat3", 150);
+
+
+    try {
+
+        form.beSigned(bureaucrat);
+        form2.beSigned(bureaucrat2);
+        form3.beSigned(bureaucrat3);
+        bureaucrat.executeForm(form);
+        bureaucrat2.executeForm(form2);
+        bureaucrat3.executeForm(form3);
     }
-    catch(const std::exception& e)
+    catch (std::exception &e)
     {
-        std::cerr << e.what() << '\n';
+        std::cerr << e.what() << std::endl;
     }
+
+    return 0;
 }
