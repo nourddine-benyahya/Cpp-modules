@@ -16,6 +16,10 @@ Bureaucrat::Bureaucrat(): name("defaultName"), grade(100){
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade): name(name), grade(grade){
     actionMessage("parameterized constructor");
+    if (grade <= 1)
+        throw GradeTooHighException();
+    else if (grade >= 150)
+        throw GradeTooLowException();
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& obj): name(obj.name), grade(obj.grade){
@@ -95,7 +99,7 @@ void Bureaucrat::executeForm(AForm const & form)
     try
     {
         form.execute(*this);
-        std::cout << name << " executes " << form.getName() << std::endl;
+        std::cout << name << " executed " << form.getName() << std::endl;
     }
     catch(const std::exception& e)
     {

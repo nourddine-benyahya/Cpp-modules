@@ -13,9 +13,13 @@ Bureaucrat::Bureaucrat(): name("defaultName"), grade(100){
     actionMessage("Constracter");
 };
 
-Bureaucrat::Bureaucrat(const std::string& name, int grade): name(name), grade(grade){
+Bureaucrat::Bureaucrat(const std::string& name, int grade) : name(name), grade(grade) {
     actionMessage("parameterized constructor");
-};
+    if (grade <= 1)
+        throw GradeTooHighException();
+    else if (grade >= 150)
+        throw GradeTooLowException();
+}
 
 Bureaucrat::Bureaucrat(const Bureaucrat& obj): name(obj.name), grade(obj.grade){
     actionMessage("copy constructor");

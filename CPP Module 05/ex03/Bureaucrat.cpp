@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp" 
 
 void actionMessage(const std::string& msg)
 {
@@ -79,7 +79,7 @@ const char *Bureaucrat::GradeTooLowException::what(void) const throw()
     return "TOO LOW";
 }
 
-void Bureaucrat::signForm(Form &form)
+void Bureaucrat::signForm(AForm &form)
 {
     actionMessage("signForm Method");
     try
@@ -90,6 +90,20 @@ void Bureaucrat::signForm(Form &form)
     catch(const std::exception& e)
     {
         std::cerr << name << " cannot sign " << form.getName() << " because " << e.what() << std::endl;
+    }
+}
+
+void Bureaucrat::executeForm(AForm const & form)
+{
+    actionMessage("executeForm Method");
+    try
+    {
+        form.execute(*this);
+        std::cout << name << " executes " << form.getName() << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << name << " cannot execute " << form.getName() << " because " << e.what() << std::endl;
     }
 }
 

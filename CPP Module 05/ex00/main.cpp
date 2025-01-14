@@ -2,10 +2,10 @@
 
 int main ()
 {
-    Bureaucrat obj("nourddine",2);
 
     try
     {
+        Bureaucrat obj("nourddine",160);
         std::cout << obj;
         obj.incrementGrade();
         std::cout << obj;
@@ -15,5 +15,4 @@ int main ()
     {
         std::cerr << e.what() << '\n';
     }
-    
 }

@@ -11,7 +11,6 @@ int main ()
         std::cout << obj;
         obj.incrementGrade();
         std::cout << obj;
-        // obj.incrementGrade();
     }
     catch(const std::exception& e)
     {
