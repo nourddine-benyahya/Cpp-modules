@@ -14,7 +14,7 @@ int main ()
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cout << e.what() << '\n';
     }
 
     try
@@ -23,7 +23,7 @@ int main ()
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cout << e.what() << '\n';
     }
     
     
