@@ -2,6 +2,8 @@
 
 int main(int ac, char *av[])
 {
-    (void)ac;
-    BitcoinExchange obj(av[1]); 
+    if (ac == 2)
+        BitcoinExchange obj(av[1]);
+    else
+        std::cerr << "Error: could not open file." << std::endl;
 }
