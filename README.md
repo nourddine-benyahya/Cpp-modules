@@ -32,10 +32,6 @@ This repository contains all my work for the **C++ Modules** at [42 School](http
 
 ## How to Use
 
-## How to Use
-
-## How to Use
-
 Feel free to explore the code in each module's folder. Each folder includes:
 - **Code Files:** My implementations for each task.
 - **Test Files:** Scripts or programs I used for testing.
