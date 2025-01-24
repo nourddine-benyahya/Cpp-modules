@@ -8,7 +8,7 @@ bool BitcoinExchange::nonAnumber(const std::string data)
         i++;
     std::string number("0123456789.f");
     while (i < len && number.find(data[i++]) != std::string::npos);
-    return i != len || data[0] == '.' ||  (i == len && number.find(data.at(len - 1)) == std::string::npos) || (data.find("f") != data.rfind("f")) ? true : false;
+    return i != len || data[0] == '.' ||  (i == len && number.find(data.at(len - 1)) == std::string::npos) || (data.find("f") != data.rfind("f")) || (data.find(".") != data.rfind(".")) ? true : false;
 }
 
 bool BitcoinExchange::nonAdate(const std::string data)
@@ -37,11 +37,6 @@ bool BitcoinExchange::nonAdate(const std::string data)
     return false;
 }
 
-void BitcoinExchange::checkFile(const std::string fileName)
-{
-    if ((fileName.substr(fileName.length() - 4)).compare(".txt"))
-        throw "Error: could not open file.";
-}
 std::string& BitcoinExchange::trim(std::string& str)
 {
    while(str[0] == ' ') str.erase(str.begin());
@@ -123,11 +118,27 @@ void BitcoinExchange::saveCsvData()
     }
 }
 
+BitcoinExchange::BitcoinExchange(const std::map<std::string, long double> data)
+{
+    this->data = data;
+}
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &data)
+{
+    this->data = data.data;
+}
+
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &data)
+{
+    this->data = data.data;
+    return *this;
+}
+
+
 BitcoinExchange::BitcoinExchange(const std::string fileName)
 {
     try{
         saveCsvData();
-        checkFile(fileName);
         saveData(fileName);
     }
     catch (const char  *e)

@@ -65,7 +65,16 @@ void _sort(container &main, container &tmp)
 template <typename container>
 void sortingalgo(container &main)
 {
-    if (main.size() < 3) return;
+    bool sorted = true;
+    for (size_t i = 0; i + 1 < main.size(); i++)
+    {
+        if (main[i] > main[i + 1])
+        {
+            sorted = false;
+            break;
+        }
+    }
+    if (sorted) return;
 
     container other, tmp;
     size_t i = 0;
@@ -75,7 +84,7 @@ void sortingalgo(container &main)
         tmp.push_back(main.back());
         main.pop_back();
     }
-    else
+    else if (main.size() > 3)
     {
         for (i = 0; i + 1 < main.size(); i += 2)
         {
@@ -95,8 +104,8 @@ void sortingalgo(container &main)
         main.swap(other); 
     }
 
-    sortingalgo(main);
     if (main.size() == 2 && main[0] > main[1])
         std::swap(main[0], main[1]);
+    sortingalgo(main);
     _sort(main, tmp);
 }

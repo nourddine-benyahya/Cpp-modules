@@ -40,6 +40,8 @@ void RPN(char *av)
             throw "invalid data";
         if (_operators.find(undef) != std::string::npos)
         {
+            if (monStack.size() < 2)
+                throw "invalid data";
             int a = monStack.top();
             monStack.pop();
             int b = monStack.top();

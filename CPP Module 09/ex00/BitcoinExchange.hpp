@@ -23,8 +23,8 @@ class BitcoinExchange
     public :
         BitcoinExchange(const std::string fileName);
         BitcoinExchange(const std::map<std::string, long double> data);
+        BitcoinExchange(const BitcoinExchange &data);
+        BitcoinExchange &operator=(const BitcoinExchange &data);
         std::map<std::string, long double> &operator=(const std::map<std::string, long double> data);
         ~BitcoinExchange(){};
-        
-
 };

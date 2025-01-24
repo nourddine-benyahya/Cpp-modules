@@ -30,6 +30,11 @@ int main(int ac, char *av[])
             std::cerr << "invalid data" << std::endl; 
             return 1;
         }
+        if (atol(av[i]) > 2147483647 || atol(av[i]) <= -2147483648)
+        {
+            std::cerr << "out of range" << std::endl;
+            return 1;
+        }
         vec.push_back(atoi(av[i]));
         deq.push_back(atoi(av[i]));
     }
